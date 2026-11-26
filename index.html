@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HypeSmart AI — Creator, Budget &amp; Smart-Choice Copilot</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            void: '#0B0F19',
+            surface: '#131A2A',
+            surfaceLight: '#1A2338',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-[#0B0F19] text-slate-100 font-sans antialiased selection:bg-indigo-500/30 selection:text-indigo-200 min-h-screen flex flex-col">
+
+  <!-- ===================================================================== -->
+  <!-- TOP NAVIGATION BAR                                                    -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-[#0B0F19]/90 backdrop-blur-md border-b border-slate-800/90">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-cyan-500 to-emerald-400 p-[1px] shadow-lg shadow-indigo-500/20">
+          <div class="w-full h-full bg-[#0B0F19] rounded-[11px] flex items-center justify-center">
+            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+        </div>
+        <div>
+          <span class="font-extrabold text-lg tracking-tight text-white">HypeSmart <span class="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">AI</span></span>
+          <span class="hidden xl:inline-block ml-2 text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/25">Student &amp; Creator Copilot</span>
+        </div>
+      </div>
+
+      <!-- Desktop Module Switcher Tabs -->
+      <nav aria-label="Workspace Modules" class="hidden md:flex items-center bg-[#131A2A] p-1 rounded-xl border border-slate-800">
+        <button type="button" data-module="hooks" class="nav-tab-btn px-3.5 py-1.5 rounded-lg text-xs lg:text-sm font-semibold transition-all cursor-pointer bg-indigo-600 text-white shadow-sm">
+          1. Viral Hook &amp; Script Lab
+        </button>
+        <button type="button" data-module="subs" class="nav-tab-btn px-3.5 py-1.5 rounded-lg text-xs lg:text-sm font-semibold transition-all cursor-pointer text-slate-400 hover:text-white">
+          2. SubTracker &amp; DealFinder
+        </button>
+        <button type="button" data-module="decision" class="nav-tab-btn px-3.5 py-1.5 rounded-lg text-xs lg:text-sm font-semibold transition-all cursor-pointer text-slate-400 hover:text-white">
+          3. Smart Decision Matrix
+        </button>
+      </nav>
+
+      <!-- Right Action Buttons -->
+      <div class="flex items-center gap-2 shrink-0">
+        <!-- Mobile Jump to Copilot -->
+        <a href="#copilot-panel" class="lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/25 transition-colors">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>AI Chat</span>
+        </a>
+
+        <!-- Prompt & Viva Docs Button -->
+        <button
+          id="open-docs-btn"
+          type="button"
+          class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white shadow-md shadow-indigo-950/50 active:scale-[0.99] transition-all cursor-pointer"
+        >
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <span>Prompt &amp; Viva Docs</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Module Tabs Bar -->
+    <div class="md:hidden border-t border-slate-800/80 bg-[#0B0F19] px-3 py-2 flex items-center gap-1.5 overflow-x-auto">
+      <button type="button" data-module="hooks" class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white cursor-pointer">
+        1. Hook &amp; Script Lab
+      </button>
+      <button type="button" data-module="subs" class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white cursor-pointer">
+        2. SubTracker
+      </button>
+      <button type="button" data-module="decision" class="nav-tab-btn shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white cursor-pointer">
+        3. Decision Matrix
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- TOAST NOTIFICATION BANNER (NON-BLOCKING FEEDBACK)                     -->
+  <!-- ===================================================================== -->
+  <div id="toast-banner" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 px-4 py-3 rounded-xl bg-emerald-950/95 border border-emerald-500/40 text-emerald-200 text-xs sm:text-sm font-medium shadow-2xl backdrop-blur-md">
+    <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+    <span id="toast-message">Copied to clipboard!</span>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN WORKSPACE: LEFT MODULES (7 COLS) + RIGHT PERSISTENT AI (5 COLS)  -->
+  <!-- ===================================================================== -->
+  <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+
+      <!-- ================================================================= -->
+      <!-- LEFT WORKSPACE AREA (MODULES 1, 2, AND 3)                         -->
+      <!-- ================================================================= -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- --------------------------------------------------------------- -->
+        <!-- MODULE 1: VIRAL HOOK & SCRIPT LAB                               -->
+        <!-- --------------------------------------------------------------- -->
+        <section id="module-hooks" class="module-panel space-y-6">
+          <!-- Module Header -->
+          <div class="bg-[#131A2A] rounded-2xl border border-slate-800 p-5 sm:p-6">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">Module 01 • Content Engine</span>
+              <span class="text-xs text-slate-400">Reels • Shorts • LinkedIn</span>
+            </div>
+            <h1 class="text-xl sm:text-2xl font-extrabold text-white">Viral Hook &amp; Short-Form Script Lab</h1>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">Turn any rough idea into scroll-stopping hooks, a beat-by-beat 30s retention script, and thumbnail text—then critique it in the AI Copilot.</p>
+
+            <!-- Inputs Form -->
+            <div class="mt-5 space-y-4">
+              <div>
+                <label for="hook-topic" class="block text-xs font-semibold text-slate-300 mb-1.5">Video / Post Topic or Rough Idea</label>
+                <input
+                  id="hook-topic"
+                  type="text"
+                  value="3 free AI tools every engineering student needs before exams"
+                  placeholder="e.g., How I built a hackathon app in 24 hours with zero sleep..."
+                  class="w-full rounded-xl bg-[#0B0F19] border border-slate-700 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+                />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                <div>
+                  <label for="hook-niche" class="block text-xs font-semibold text-slate-300 mb-1.5">Creator Niche</label>
+                  <select id="hook-niche" class="w-full rounded-xl bg-[#0B0F19] border border-slate-700 px-3 py-2.5 text-sm text-white focus:border-indigo-500 focus:outline-none">
+                    <option value="Tech & AI" selected>Tech &amp; AI</option>
+                    <option value="College Life & Vlogs">College Life &amp; Vlogs</option>
+                    <option value="Gaming & Esports">Gaming &amp; Esports</option>
+                    <option value="Fitness & Lifestyle">Fitness &amp; Lifestyle</option>
+                    <option value="Finance & Hustle">Finance &amp; Hustle</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="hook-platform" class="block text-xs font-semibold text-slate-300 mb-1.5">Target Platform</label>
+                  <select id="hook-platform" class="w-full rounded-xl bg-[#0B0F19] border border-slate-700 px-3 py-2.5 text-sm text-white focus:border-indigo-500 focus:outline-none">
+                    <option value="Instagram Reels" selected>Instagram Reels</option>
+                    <option value="YouTube Shorts">YouTube Shorts</option>
+                    <option value="LinkedIn Post">LinkedIn Post</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="hook-tone" class="block text-xs font-semibold text-slate-300 mb-1.5">Delivery Tone</label>
+                  <select id="hook-tone" class="w-full rounded-xl bg-[#0B0F19] border border-slate-700 px-3 py-2.5 text-sm text-white focus:border-indigo-500 focus:outline-none">
+                    <option value="High-Energy" selected>High-Energy</option>
+                    <option value="Storytelling">Storytelling</option>
+                    <option value="Contrarian/Bold">Contrarian / Bold</option>
+                    <option value="Educational">Educational</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-3 pt-1">
+                <button
+                  id="generate-hooks-btn"
+                  type="button"
+                  class="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm inline-flex items-center justify-center gap-2 shadow-lg shadow-indigo-950/50 transition-all cursor-pointer"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  <span>Generate Hooks &amp; Script</span>
+                </button>
+
+                <button
+                  id="critique-script-ai-btn"
+                  type="button"
+                  class="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-500/30 font-semibold text-sm inline-flex items-center justify-center gap-2 transition-all cursor-pointer"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                  </svg>
+                  <span>Critique in AI Copilot</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Generated Output Area -->
+          <div id="hook-results-container" class="space-y-4">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </section>
+
+        <!-- --------------------------------------------------------------- -->
+        <!-- MODULE 2: SUBTRACKER & DEALFINDER                               -->
+        <!-- --------------------------------------------------------------- -->
+        <section id="module-subs" class="module-panel hidden space-y-6">
+          <!-- Header & Student ID Discount Optimizer Toggle -->
+          <div class="bg-[#131A2A] rounded-2xl border border-slate-800 p-5 sm:p-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">Module 02 • Student Wallet Guard</span>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-white mt-1.5">SubTracker &amp; Student DealFinder</h2>
+                <p class="text-xs sm:text-sm text-slate-400 mt-1">Track recurring apps, spot "Rarely Used" money leaks, and unlock .edu / Student ID discounts.</p>
+              </div>
+
+              <!-- Student Discount Optimizer Toggle Card -->
+              <label for="student-discount-toggle" class="flex items-center justify-between sm:justify-start gap-3 px-4 py-3 rounded-xl bg-[#0B0F19] border border-emerald-500/30 cursor-pointer select-none shrink-0">
+                <div>
+                  <p class="text-xs font-bold text-emerald-300">Student ID Optimizer</p>
+                  <p class="text-[11px] text-slate-400">Apply 50%–100% student perks</p>
+                </div>
+                <div class="relative inline-flex items-center">
+                  <input id="student-discount-toggle" type="checkbox" checked class="sr-only peer" />
+                  <div class="w-11 h-6 bg-slate-700 rounded-full peer peer-checked:bg-emerald-500 transition-colors after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
+                </div>
+              </label>
+            </div>
+
+            <!-- KPI Summary Row -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mt-6">
+              <div class="bg-[#0B0F19] rounded-xl border border-slate-800 p-3.5">
+                <p class="text-[11px] font-medium text-slate-400">Net Monthly Burn</p>
+                <p id="sub-kpi-monthly" class="text-xl sm:text-2xl font-extrabold text-white mt-1">₹1,328</p>
+                <p id="sub-kpi-original" class="text-[11px] text-slate-500 line-through mt-0.5">₹1,847 regular</p>
+              </div>
+              <div class="bg-[#0B0F19] rounded-xl border border-slate-800 p-3.5">
+                <p class="text-[11px] font-medium text-slate-400">Projected Yearly</p>
+                <p id="sub-kpi-yearly" class="text-xl sm:text-2xl font-extrabold text-cyan-400 mt-1">₹15,936</p>
+                <p class="text-[11px] text-slate-400 mt-0.5">12-month run rate</p>
+              </div>
+              <div class="bg-emerald-950/40 rounded-xl border border-emerald-500/30 p-3.5">
+                <p class="text-[11px] font-medium text-emerald-300">Student ID Savings</p>
+                <p id="sub-kpi-saved" class="text-xl sm:text-2xl font-extrabold text-emerald-400 mt-1">₹6,228/yr</p>
+                <p id="sub-kpi-saved-mo" class="text-[11px] text-emerald-300/80 mt-0.5">₹519 saved / mo</p>
+              </div>
+              <div class="bg-amber-950/30 rounded-xl border border-amber-500/30 p-3.5">
+                <p class="text-[11px] font-medium text-amber-300">Cancel Alerts</p>
+                <p id="sub-kpi-leaks" class="text-xl sm:text-2xl font-extrabold text-amber-400 mt-1">2 Leaks</p>
+                <p id="sub-kpi-leak-cost" class="text-[11px] text-amber-300/80 mt-0.5">Rarely used plans</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add New Subscription Form -->
+          <div class="bg-[#131A2A] rounded-2xl border border-slate-800 p-5 sm:p-6">
+            <h3 class="text-sm font-bold text-white mb-3">Add a Subscription</h3>
+            <form id="add-sub-form" class="grid grid-cols-1 sm:grid-cols-12 gap-3" novalidate>
+              <div class="sm:col-span-4">
+                <label for="sub-name" class="sr-only">App or Service Name</label>
+                <input
+                  id="sub-name"
+                  type="text"
+                  placeholder="Service (e.g., Notion Plus, Netflix)"
+                  class="w-full rounded-xl bg-[#0B0F19] border border-slate-700 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-emerald-500 focus:outline-none"
+                />
+              </div>
+              <div class="sm:col-span-2">
+                <label for="sub-cost" class="sr-only">Monthly INR Cost</label>
+                <input
+                  id="sub-cost"
+                  type="number"
+                  min="1"
+                  max="50000"
+                  placeholder="₹ / mo"
+                  class="w-full rounded-xl bg-[#0B0F19] border border-slate-700 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-emerald-500 focus:outline-none"
+                />
+              </div>
+              <div class="sm:col-span-3">
+                <label for="sub-category" class="sr-only">Category</label>
+                <select id="sub-category" class="w-full rounded-xl bg-[#0B0F19] border border-slate-700 px-3 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none">
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Creator & Design">Creator &amp; Design</option>
+                  <option value="AI & Productivity">AI &amp; Productivity</option>
+                  <option value="Fitness & Health">Fitness &amp; Health</option>
+                  <option value="Cloud & Dev">Cloud &amp; Dev</option>
+                </select>
+              </div>
+              <div class="sm:col-span-3 flex gap-2">
+                <select id="sub-usage" aria-label="Usage Frequency" class="flex-1 rounded-xl bg-[#0B0F19] border border-slate-700 px-2.5 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none">
+                  <option value="Daily">Daily</option>
+                  <option value="Weekly">Weekly</option>
+                  <option value="Rarely">Rarely</option>
+                </select>
+                <button type="submit" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shrink-0 transition-colors cursor-pointer">
+                  + Add
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Active Subscriptions List + AI Budget CTA -->
+          <div class="bg-[#131A2A] rounded-2xl border border-slate-800 p-5 sm:p-6 space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <h3 class="text-base font-bold text-white">Your Active Subscriptions</h3>
+              <button
+                id="analyze-budget-ai-btn"
+                type="button"
+                class="px-4 py-2 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-500/30 font-semibold text-xs sm:text-sm inline-flex items-center gap-2 transition-all cursor-pointer"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <span>Analyze My Budget in AI</span>
+              </button>
+            </div>
+
+            <div id="sub-list-container" class="space-y-3">
+              <!-- Populated dynamically via JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- --------------------------------------------------------------- -->
+        <!-- MODULE 3: SMART DECISION MATRIX (OVERTHINKER SOLVER)            -->
+        <!-- --------------------------------------------------------------- -->
+        <section id="module-decision" class="module-panel hidden space-y-6">
+          <div class="bg-[#131A2A] rounded-2xl border border-slate-800 p-5 sm:p-6 space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">Module 03 • Overthinker Solver</span>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-white mt-1.5">Weighted Smart Decision Matrix</h2>
+                <p class="text-xs sm:text-sm text-slate-400 mt-1">Stop second-guessing big student purchases or career moves. Score both options against what matters most to you.</p>
+              </div>
+            </div>
+
+            <!-- Quick Presets -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-semibold text-slate-400">Student Presets:</span>
+              <button type="button" data-dpreset="laptop" class="decision-preset-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#0B0F19] border border-slate-700 text-slate-300 hover:border-cyan-500 hover:text-cyan-300 transition-colors cursor-pointer">
+                Laptop Upgrade vs. Save Cash
+              </button>
+              <button type="button" data-dpreset="course" class="decision-preset-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#0B0F19] border border-slate-700 text-slate-300 hover:border-cyan-500 hover:text-cyan-300 transition-colors cursor-pointer">
+                Paid Bootcamp vs. Free YouTube
+              </button>
+              <button type="button" data-dpreset="fest" class="decision-preset-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#0B0F19] border border-slate-700 text-slate-300 hover:border-cyan-500 hover:text-cyan-300 transition-colors cursor-pointer">
+                College Fest Core vs. Hackathon
+              </button>
+            </div>
+
+            <!-- Option A vs Option B Inputs -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-3.5 rounded-xl bg-indigo-950/30 border border-indigo-500/30">
+                <label for="option-a-name" class="block text-[11px] font-bold uppercase tracking-wider text-indigo-300 mb-1">Option A</label>
+                <input
+                  id="option-a-name"
+                  type="text"
+                  value="Buy Editing & Coding Laptop (₹65k)"
+                  class="w-full rounded-lg bg-[#0B0F19] border border-slate-700 px-3 py-2 text-sm font-semibold text-white focus:border-indigo-500 focus:outline-none"
+                />
+              </div>
+              <div class="p-3.5 rounded-xl bg-cyan-950/30 border border-cyan-500/30">
+                <label for="option-b-name" class="block text-[11px] font-bold uppercase tracking-wider text-cyan-300 mb-1">Option B</label>
+                <input
+                  id="option-b-name"
+                  type="text"
+                  value="Upgrade RAM/SSD & Invest Balance"
+                  class="w-full rounded-lg bg-[#0B0F19] border border-slate-700 px-3 py-2 text-sm font-semibold text-white focus:border-cyan-500 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <!-- Criteria Weight & Option Scores Sliders -->
+            <div id="decision-criteria-container" class="space-y-4">
+              <!-- Populated dynamically via JS -->
+            </div>
+
+            <!-- Winner Output Card -->
+            <div class="bg-[#0B0F19] rounded-2xl border border-slate-800 p-5 space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <span id="decision-winner-badge" class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    Recommended Choice
+                  </span>
+                  <h3 id="decision-winner-title" class="text-lg sm:text-xl font-extrabold text-white mt-1.5">Option B Wins!</h3>
+                </div>
+                <button
+                  id="devils-advocate-ai-btn"
+                  type="button"
+                  class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-bold text-xs sm:text-sm inline-flex items-center gap-2 shadow-md transition-all cursor-pointer"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  <span>Play Devil's Advocate in AI</span>
+                </button>
+              </div>
+
+              <!-- Score Bars -->
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between text-xs font-bold mb-1">
+                    <span id="bar-label-a" class="text-indigo-300">Option A</span>
+                    <span id="bar-score-a" class="text-white">0 / 100 pts</span>
+                  </div>
+                  <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden">
+                    <div id="bar-fill-a" class="h-full bg-indigo-500 rounded-full transition-all duration-300" style="width: 50%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-bold mb-1">
+                    <span id="bar-label-b" class="text-cyan-300">Option B</span>
+                    <span id="bar-score-b" class="text-white">0 / 100 pts</span>
+                  </div>
+                  <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden">
+                    <div id="bar-fill-b" class="h-full bg-cyan-400 rounded-full transition-all duration-300" style="width: 50%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- RIGHT PERSISTENT COPILOT PANEL: HYPESMART AI CHATBOT (5 COLS)     -->
+      <!-- ================================================================= -->
+      <aside id="copilot-panel" class="lg:col-span-5 lg:sticky lg:top-24 scroll-mt-24">
+        <div class="bg-[#131A2A] rounded-3xl border border-slate-800 shadow-2xl overflow-hidden flex flex-col">
+          <!-- Chatbot Top Bar -->
+          <div class="bg-gradient-to-r from-[#162036] to-[#111827] px-5 py-4 border-b border-slate-800 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-2xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center text-cyan-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h2 class="text-base font-extrabold text-white">HypeSmart Copilot</h2>
+                  <span id="active-context-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                    Context: Hook Lab
+                  </span>
+                </div>
+                <p class="text-[11px] text-slate-400 mt-0.5">Live Gemini API • Tab-Aware Student Assistant</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5">
+              <!-- Toggle API Key Settings Drawer -->
+              <button
+                id="toggle-key-drawer-btn"
+                type="button"
+                title="Configure Gemini API Key"
+                class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                </svg>
+              </button>
+              <!-- Clear Chat -->
+              <button
+                id="clear-chat-btn"
+                type="button"
+                title="Clear Chat History"
+                class="px-2.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+
+          <!-- Toggleable API Key Configuration Drawer (Zero Hardcoded Secrets) -->
+          <div id="api-key-drawer" class="hidden bg-[#0B0F19] border-b border-slate-800 px-5 py-3.5 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-cyan-300">Gemini API Key Setup (Safe LocalStorage)</span>
+              <span id="key-status-pill" class="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-400">Runtime / Env Mode</span>
+            </div>
+            <p class="text-[11px] text-slate-400 leading-relaxed">
+              No API key is hardcoded in source code. Paste your Gemini API key below for local testing, or deploy with Vercel's <code class="text-indigo-300">/api/chat</code> environment variable (see Viva Docs).
+            </p>
+            <div class="flex gap-2">
+              <input
+                id="user-api-key-input"
+                type="password"
+                placeholder="AIzaSy... (stored only in your browser)"
+                class="flex-1 rounded-lg bg-[#131A2A] border border-slate-700 px-3 py-1.5 text-xs text-white placeholder:text-slate-500 focus:border-cyan-500 focus:outline-none"
+              />
+              <button id="save-api-key-btn" type="button" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold cursor-pointer">
+                Save
+              </button>
+              <button id="clear-api-key-btn" type="button" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold cursor-pointer">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Tab-Specific Quick Prompt Chips -->
+          <div id="copilot-chips-bar" class="bg-[#0F1523] border-b border-slate-800/80 px-4 py-2.5 flex items-center gap-2 overflow-x-auto">
+            <!-- Populated dynamically based on active module -->
+          </div>
+
+          <!-- Chat History Stream -->
+          <div id="chat-messages" class="h-[400px] overflow-y-auto p-4 sm:p-5 space-y-4 bg-[#0B0F19]/60">
+            <!-- Initial Greeting -->
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-600 to-cyan-500 text-white flex items-center justify-center text-xs font-extrabold shrink-0 mt-0.5">
+                AI
+              </div>
+              <div class="bg-[#1A2338] border border-slate-700/70 text-slate-200 rounded-2xl rounded-tl-sm px-4 py-3 text-xs sm:text-sm leading-relaxed">
+                <p class="font-bold text-white mb-1">Hey! I'm HypeSmart Copilot.</p>
+                <p>I automatically sync with whichever tab you're using—whether you need punchier Reels hooks, ways to slash unused subscriptions, or a devil's-advocate check on a tough decision.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Validation / API Error Banner -->
+          <div id="chat-error-banner" class="hidden mx-4 mt-2 px-3.5 py-2.5 rounded-xl bg-rose-950/80 border border-rose-500/40 text-rose-200 text-xs flex items-center justify-between gap-2">
+            <span id="chat-error-text">Please enter a valid message.</span>
+            <button id="dismiss-error-btn" type="button" class="text-rose-300 hover:text-white font-bold text-sm cursor-pointer">&times;</button>
+          </div>
+
+          <!-- Chat Input Form -->
+          <form id="chat-form" class="p-3.5 sm:p-4 bg-[#131A2A] border-t border-slate-800 flex items-center gap-2.5" novalidate>
+            <label for="chat-input" class="sr-only">Message HypeSmart Copilot</label>
+            <input
+              id="chat-input"
+              type="text"
+              maxlength="500"
+              placeholder="Ask HypeSmart AI about your hooks, budget, or choice..."
+              class="flex-1 rounded-xl bg-[#0B0F19] border border-slate-700 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+            />
+            <button
+              id="chat-submit-btn"
+              type="submit"
+              class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm inline-flex items-center gap-1.5 transition-all cursor-pointer shrink-0"
+            >
+              <span>Send</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- FOOTER                                                                -->
+  <!-- ===================================================================== -->
+  <footer class="border-t border-slate-800/80 bg-[#0B0F19] py-6 mt-10">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+      <p class="font-semibold text-slate-300">HypeSmart AI — Creator, Budget &amp; Smart-Choice Copilot</p>
+      <p>Prompt Engineering Final Project • Multi-Module Student App + Live Gemini API</p>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- PROMPT ENGINEERING & VIVA DOCUMENTATION MODAL                         -->
+  <!-- ===================================================================== -->
+  <div
+    id="docs-modal"
+    class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="docs-modal-title"
+  >
+    <div class="bg-[#131A2A] rounded-3xl max-w-4xl w-full max-h-[88vh] flex flex-col shadow-2xl border border-slate-700 overflow-hidden">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 bg-[#0B0F19] border-b border-slate-800 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] uppercase tracking-wider text-cyan-400 font-bold">Course Submission &amp; Evaluation Guide</span>
+          <h2 id="docs-modal-title" class="text-lg font-extrabold text-white">Prompt Engineering &amp; Viva Documentation</h2>
+        </div>
+        <button
+          id="close-docs-btn"
+          type="button"
+          class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center text-lg font-bold cursor-pointer"
+          aria-label="Close modal"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal Tabs -->
+      <div class="flex border-b border-slate-800 bg-[#0F1523] px-6 gap-2 overflow-x-auto">
+        <button type="button" data-doctab="five-parts" class="doc-tab-btn py-3 px-3 text-xs sm:text-sm font-bold border-b-2 border-indigo-500 text-indigo-300 whitespace-nowrap cursor-pointer">
+          (a) 5-Part Initial Prompt
+        </button>
+        <button type="button" data-doctab="refinements" class="doc-tab-btn py-3 px-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white whitespace-nowrap cursor-pointer">
+          (b) Prompt Refinement Log
+        </button>
+        <button type="button" data-doctab="ai-tools" class="doc-tab-btn py-3 px-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white whitespace-nowrap cursor-pointer">
+          (c) 3+ AI Tools Used
+        </button>
+        <button type="button" data-doctab="deploy-guide" class="doc-tab-btn py-3 px-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white whitespace-nowrap cursor-pointer">
+          (d) Safe GitHub &amp; Vercel Guide
+        </button>
+      </div>
+
+      <!-- Modal Panels -->
+      <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-300 leading-relaxed">
+        <!-- (a) 5-Part Initial Prompt -->
+        <div id="docpanel-five-parts" class="doc-panel space-y-3">
+          <p class="text-xs text-slate-400">Prepared prior to generating code to satisfy Section 2.2 of the Prompt Engineering Final Project Guidelines:</p>
+          <div class="p-3.5 rounded-xl bg-[#0B0F19] border border-slate-800">
+            <span class="text-xs font-extrabold uppercase text-indigo-400">1. Role</span>
+            <p class="mt-1 text-slate-200">"Act as a Senior Full-Stack Web Developer and Product Designer specializing in high-utility consumer productivity apps for college students and Gen-Z creators."</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#0B0F19] border border-slate-800">
+            <span class="text-xs font-extrabold uppercase text-indigo-400">2. Task</span>
+            <p class="mt-1 text-slate-200">"Create 'HypeSmart AI', a responsive web application combining three interactive student tools—(1) Viral Hook &amp; Script Lab, (2) SubTracker &amp; Student DealFinder, and (3) Weighted Smart Decision Matrix—integrated with a persistent live Gemini AI Copilot."</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#0B0F19] border border-slate-800">
+            <span class="text-xs font-extrabold uppercase text-indigo-400">3. Context</span>
+            <p class="mt-1 text-slate-200">"College students and young adults struggle with short-form content ideation, wasted money on forgotten subscriptions, and decision paralysis over tech purchases or career choices. This hub solves all three in one cohesive workflow."</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#0B0F19] border border-slate-800">
+            <span class="text-xs font-extrabold uppercase text-indigo-400">4. Constraints</span>
+            <p class="mt-1 text-slate-200">"Use semantic HTML5, Tailwind CSS via CDN, and vanilla ES6 JavaScript in a single self-contained file with a dark-mode aesthetic (#0B0F19). Connect the chatbot to the live Gemini API with input validation, retry logic, error handling, and zero hardcoded API keys."</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#0B0F19] border border-slate-800">
+            <span class="text-xs font-extrabold uppercase text-indigo-400">5. Output Format</span>
+            <p class="mt-1 text-slate-200">"Deliver a complete, runnable index.html file with a top module switcher, interactive forms and visual progress bars, a persistent side-panel AI Copilot, and a tabbed Prompt &amp; Viva Docs modal."</p>
+          </div>
+        </div>
+
+        <!-- (b) Prompt Refinement Log -->
+        <div id="docpanel-refinements" class="doc-panel hidden space-y-3.5">
+          <p class="text-xs text-slate-400">Documented prompt iterations demonstrating how structured refinement improved application accuracy and UX (Section 2.4):</p>
+
+          <div class="p-4 rounded-xl bg-[#0B0F19] border border-slate-800 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white">v1 &rarr; v2: Dynamic Tab-Aware Context Injection</span>
+              <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">Context Prompting</span>
+            </div>
+            <p class="text-xs text-rose-300"><strong>Before (v1):</strong> Generic chatbot system prompt had no awareness of which module the user was currently editing.</p>
+            <p class="text-xs text-emerald-300"><strong>After (v2):</strong> Updated <code>systemInstruction</code> dynamically on every send to inject the active tab name plus live state (generated script, subscription list, or decision matrix scores).</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#0B0F19] border border-slate-800 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white">v2 &rarr; v3: Persona Guardrails &amp; Concise Formatting</span>
+              <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300">Constraint + Role Prompting</span>
+            </div>
+            <p class="text-xs text-rose-300"><strong>Before (v2):</strong> AI responses were verbose 400-word paragraphs that overflowed the side-panel chat window.</p>
+            <p class="text-xs text-emerald-300"><strong>After (v3):</strong> Constrained the AI persona to reply in under 140 words using crisp bullet points, INR (₹) currency formatting, and actionable next steps.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#0B0F19] border border-slate-800 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white">v3 &rarr; v4: Resilient Error &amp; Security Handling</span>
+              <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Edge-Case Prompting</span>
+            </div>
+            <p class="text-xs text-rose-300"><strong>Before (v3):</strong> Blank prompts or missing API keys failed silently without user feedback.</p>
+            <p class="text-xs text-emerald-300"><strong>After (v4):</strong> Added client-side length validation, exponential backoff retries, inline error alerts, and a localStorage key drawer so zero secrets are committed to GitHub.</p>
+          </div>
+        </div>
+
+        <!-- (c) 3+ AI Tools Contribution -->
+        <div id="docpanel-ai-tools" class="doc-panel hidden space-y-3.5">
+          <p class="text-xs text-slate-400">Actual division of development tasks across three distinct AI tools (Section 2.3):</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+            <div class="p-4 rounded-xl bg-[#0B0F19] border border-indigo-500/30">
+              <p class="font-bold text-indigo-300">1. Google Gemini</p>
+              <p class="text-xs text-slate-300 mt-1.5">Architected the 5-part prompt structure, generated the multi-module Tailwind UI layout, and powers the live <code>gemini-3-flash-preview</code> Copilot API.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-[#0B0F19] border border-cyan-500/30">
+              <p class="font-bold text-cyan-300">2. Claude / ChatGPT</p>
+              <p class="text-xs text-slate-300 mt-1.5">Refined the weighted decision-matrix normalization math (1–10 criteria weights) and designed realistic Indian student subscription pricing &amp; discount tiers.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-[#0B0F19] border border-emerald-500/30">
+              <p class="font-bold text-emerald-300">3. Cursor / GitHub Copilot</p>
+              <p class="text-xs text-slate-300 mt-1.5">Assisted with DOM event delegation, XSS-safe markdown formatting in the chat stream, and mobile responsive breakpoint testing.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- (d) Safe GitHub & Vercel Deployment Guide -->
+        <div id="docpanel-deploy-guide" class="doc-panel hidden space-y-3">
+          <p class="text-xs text-slate-300">
+            <strong>Rule Compliance (Section 2.6):</strong> Never push API keys to a public GitHub repository. To deploy safely on <strong>Vercel</strong>, add an <code>api/chat.js</code> serverless proxy and store <code>GEMINI_API_KEY</code> in Vercel's Environment Variables:
+          </p>
+          <pre class="p-4 rounded-xl bg-[#0B0F19] border border-slate-800 text-xs text-emerald-300 overflow-x-auto"><code>// api/chat.js (Vercel Serverless Function — keeps API key 100% hidden)
+export default async function handler(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  const { contents, systemInstruction } = req.body;
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${process.env.GEMINI_API_KEY}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contents, systemInstruction })
+    }
+  );
+  const data = await response.json();
+  return res.status(response.status).json(data);
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION JAVASCRIPT (MODULES 1, 2, 3 + LIVE GEMINI COPILOT)        -->
+  <!-- ===================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ===================================================================
+      // SHARED UTILITIES & TOAST FEEDBACK
+      // ===================================================================
+      const toastBanner = document.getElementById('toast-banner');
+      const toastMessage = document.getElementById('toast-message');
+      let toastTimer = null;
+
+      function showToast(msg) {
+        toastMessage.textContent = msg;
+        toastBanner.classList.remove('hidden');
+        toastBanner.classList.add('flex');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastBanner.classList.add('hidden');
+          toastBanner.classList.remove('flex');
+        }, 2600);
+      }
+
+      // Safe Clipboard Copy (Works inside iframes & standard browsers)
+      function copyTextToClipboard(text, label = 'Copied to clipboard!') {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          showToast(label);
+        } catch (err) {
+          showToast('Unable to copy automatically.');
+        }
+        document.body.removeChild(textarea);
+      }
+
+      // ===================================================================
+      // NAVIGATION & ACTIVE MODULE STATE
+      // ===================================================================
+      let activeModule = 'hooks'; // 'hooks' | 'subs' | 'decision'
+      const activeContextBadge = document.getElementById('active-context-badge');
+      const copilotChipsBar = document.getElementById('copilot-chips-bar');
+
+      const MODULE_CHIPS = {
+        hooks: [
+          'Make hook #1 more punchy & controversial',
+          'Rewrite this script for a 15-sec Reel',
+          'Suggest B-roll visuals for each beat'
+        ],
+        subs: [
+          'Which subscriptions should I cancel first?',
+          'How do I claim GitHub & Spotify student perks?',
+          'Create a ₹1,000/mo student app budget'
+        ],
+        decision: [
+          'Challenge my Option A vs Option B scores',
+          'What hidden risks am I overlooking?',
+          'Give me a 48-hour test before committing'
+        ]
+      };
+
+      function renderCopilotChips() {
+        const chips = MODULE_CHIPS[activeModule] || MODULE_CHIPS.hooks;
+        copilotChipsBar.innerHTML = `<span class="text-[11px] font-semibold text-slate-400 shrink-0">Quick:</span>`;
+        chips.forEach((text) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'shrink-0 px-3 py-1 rounded-full text-[11px] font-medium bg-[#131A2A] border border-slate-700 text-slate-300 hover:border-indigo-500 hover:text-white transition-colors cursor-pointer';
+          btn.textContent = text;
+          btn.addEventListener('click', () => handleSendPrompt(text));
+          copilotChipsBar.appendChild(btn);
+        });
+      }
+
+      function switchModule(moduleId) {
+        activeModule = moduleId;
+
+        // Toggle Panels
+        document.querySelectorAll('.module-panel').forEach((panel) => {
+          panel.classList.add('hidden');
+        });
+        const target = document.getElementById(`module-${moduleId}`);
+        if (target) target.classList.remove('hidden');
+
+        // Update Tab Button Styles
+        document.querySelectorAll('.nav-tab-btn').forEach((btn) => {
+          const isMatch = btn.getAttribute('data-module') === moduleId;
+          if (isMatch) {
+            btn.classList.add('bg-indigo-600', 'text-white', 'shadow-sm');
+            btn.classList.remove('text-slate-400', 'hover:text-white');
+          } else {
+            btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm');
+            btn.classList.add('text-slate-400', 'hover:text-white');
+          }
+        });
+
+        // Update Copilot Badge & Chips
+        const labels = {
+          hooks: 'Context: Hook Lab',
+          subs: 'Context: SubTracker',
+          decision: 'Context: Decision Matrix'
+        };
+        activeContextBadge.textContent = labels[moduleId] || 'Context: Active';
+        renderCopilotChips();
+      }
+
+      document.querySelectorAll('.nav-tab-btn').forEach((btn) => {
+        btn.addEventListener('click', () => switchModule(btn.getAttribute('data-module')));
+      });
+
+      // ===================================================================
+      // MODULE 1: VIRAL HOOK & SCRIPT LAB LOGIC
+      // ===================================================================
+      const hookTopicInput = document.getElementById('hook-topic');
+      const hookNicheSelect = document.getElementById('hook-niche');
+      const hookPlatformSelect = document.getElementById('hook-platform');
+      const hookToneSelect = document.getElementById('hook-tone');
+      const generateHooksBtn = document.getElementById('generate-hooks-btn');
+      const critiqueScriptAiBtn = document.getElementById('critique-script-ai-btn');
+      const hookResultsContainer = document.getElementById('hook-results-container');
+
+      let latestGeneratedScriptSummary = '';
+
+      function buildHooksAndScript() {
+        const topic = (hookTopicInput.value || '').trim() || '3 productivity hacks for college students';
+        const niche = hookNicheSelect.value;
+        const platform = hookPlatformSelect.value;
+        const tone = hookToneSelect.value;
+
+        // Tone-adapted hook templates
+        const hookTemplates = {
+          'High-Energy': [
+            `Stop scrolling if you're into ${niche}—here's the truth about ${topic}!`,
+            `I tested "${topic}" for 7 days straight so you don't have to—look at result #2.`,
+            `99% of students completely miss this shortcut for ${topic}.`
+          ],
+          'Storytelling': [
+            `Last semester I was completely stuck until I figured out ${topic}...`,
+            `Nobody talks about how hard ${topic} actually is—until you try this one shift.`,
+            `Here is the exact 30-second breakdown of how ${topic} changed my routine.`
+          ],
+          'Contrarian/Bold': [
+            `Unpopular opinion in ${niche}: everything you've been told about ${topic} is backwards.`,
+            `Delete your old workflow—this single approach to ${topic} beats every paid tool.`,
+            `Why 90% of people fail at ${topic} (and the 10-second fix).`
+          ],
+          'Educational': [
+            `Save this ${platform} guide: 3 actionable steps to master ${topic} today.`,
+            `Want better results in ${niche}? Break ${topic} down into these 3 simple beats.`,
+            `The beginner-to-pro cheat sheet for ${topic} in under 30 seconds.`
+          ]
+        };
+
+        const hooks = hookTemplates[tone] || hookTemplates['High-Energy'];
+        const scriptBeats = [
+          {
+            time: '0:00 – 0:04',
+            label: 'The Scroll-Stopper Hook',
+            text: `"${hooks[0]}" (Show fast visual proof or on-screen bold caption immediately).`
+          },
+          {
+            time: '0:04 – 0:12',
+            label: 'Retention Twist & Problem',
+            text: `"Most people overcomplicate ${topic}, waste hours, and quit early. Instead, focus on this exact 2-step system."`
+          },
+          {
+            time: '0:12 – 0:24',
+            label: 'Core Value Delivery',
+            text: `"Step 1: Set up your baseline in 60 seconds. Step 2: Automate the repetitive part using free student tools so you stay consistent."`
+          },
+          {
+            time: '0:24 – 0:30',
+            label: 'Loop & Call-To-Action',
+            text: `"Save this before it gets buried in your feed, and comment '${niche.split(' ')[0].toUpperCase()}' if you want my full template!"`
+          }
+        ];
+
+        const thumbnailText = topic.length > 34 ? topic.slice(0, 34).toUpperCase() + '...' : topic.toUpperCase();
+        const nicheTag = '#' + niche.replace(/[^a-zA-Z0-9]/g, '');
+        const platTag = '#' + platform.replace(/[^a-zA-Z0-9]/g, '');
+        const hashtags = `${nicheTag} ${platTag} #StudentHustle #CreatorTips #LearnOnReels #Productivity2026`;
+
+        latestGeneratedScriptSummary = `Topic: "${topic}" | Niche: ${niche} | Platform: ${platform} | Tone: ${tone} | Hook 1: "${hooks[0]}" | Script: ${scriptBeats.map((b) => `${b.label}: ${b.text}`).join(' ')}`;
+
+        // Render Cards
+        hookResultsContainer.innerHTML = `
+          <!-- 3 Scroll-Stopping Hooks -->
+          <div class="bg-[#131A2A] rounded-2xl border border-slate-800 p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-white">3 Scroll-Stopping Hooks (${tone})</h3>
+              <span class="text-[11px] font-semibold text-indigo-300">${platform}</span>
+            </div>
+            <div class="space-y-2.5">
+              ${hooks
+                .map(
+                  (h, i) => `
+                <div class="p-3 rounded-xl bg-[#0B0F19] border border-slate-800 flex items-start justify-between gap-3">
+                  <p class="text-xs sm:text-sm text-slate-200 leading-relaxed"><span class="font-extrabold text-indigo-400 mr-1.5">#${i + 1}</span>"${h}"</p>
+                  <button type="button" data-copy="${h.replace(/"/g, '&quot;')}" class="copy-snippet-btn shrink-0 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-indigo-600 text-[11px] font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer">
+                    Copy
+                  </button>
+                </div>
+              `
+                )
+                .join('')}
+            </div>
+          </div>
+
+          <!-- 30-Second Retention Script -->
+          <div class="bg-[#131A2A] rounded-2xl border border-slate-800 p-5 space-y-3.5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-white">30-Second Beat-by-Beat Script</h3>
+              <button type="button" id="copy-full-script-btn" class="px-3 py-1 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 border border-indigo-500/30 text-xs font-semibold transition-colors cursor-pointer">
+                Copy Full Script
+              </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              ${scriptBeats
+                .map(
+                  (b) => `
+                <div class="p-3.5 rounded-xl bg-[#0B0F19] border border-slate-800 space-y-1">
+                  <div class="flex items-center justify-between text-[11px]">
+                    <span class="font-bold text-cyan-400">${b.label}</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">${b.time}</span>
+                  </div>
+                  <p class="text-xs text-slate-300 leading-relaxed">${b.text}</p>
+                </div>
+              `
+                )
+                .join('')}
+            </div>
+
+            <!-- Cover Text & Hashtags -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div class="p-3 rounded-xl bg-[#0B0F19] border border-slate-800 flex items-center justify-between gap-2">
+                <div>
+                  <p class="text-[10px] font-bold uppercase text-slate-400">Thumbnail / Cover Text</p>
+                  <p class="text-xs font-extrabold text-amber-300 mt-0.5">${thumbnailText}</p>
+                </div>
+                <button type="button" data-copy="${thumbnailText}" class="copy-snippet-btn px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-semibold text-slate-300 cursor-pointer">Copy</button>
+              </div>
+              <div class="p-3 rounded-xl bg-[#0B0F19] border border-slate-800 flex items-center justify-between gap-2">
+                <div class="min-w-0">
+                  <p class="text-[10px] font-bold uppercase text-slate-400">Targeted Hashtags</p>
+                  <p class="text-xs text-cyan-300 truncate mt-0.5">${hashtags}</p>
+                </div>
+                <button type="button" data-copy="${hashtags}" class="copy-snippet-btn shrink-0 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-semibold text-slate-300 cursor-pointer">Copy</button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Bind Copy Buttons
+        hookResultsContainer.querySelectorAll('.copy-snippet-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            copyTextToClipboard(btn.getAttribute('data-copy'), 'Snippet copied!');
+          });
+        });
+
+        const copyFullBtn = document.getElementById('copy-full-script-btn');
+        if (copyFullBtn) {
+          copyFullBtn.addEventListener('click', () => {
+            const fullText = scriptBeats.map((b) => `[${b.time}] ${b.label}: ${b.text}`).join('\n');
+            copyTextToClipboard(fullText, 'Full 30s script copied!');
+          });
+        }
+      }
+
+      generateHooksBtn.addEventListener('click', () => {
+        buildHooksAndScript();
+        showToast('Generated fresh hooks & 30s script!');
+      });
+
+      critiqueScriptAiBtn.addEventListener('click', () => {
+        if (!latestGeneratedScriptSummary) buildHooksAndScript();
+        document.getElementById('copilot-panel').scrollIntoView({ behavior: 'smooth' });
+        handleSendPrompt(
+          `Critique my generated short-form script and give me 1 stronger opening hook + 1 retention improvement:\n${latestGeneratedScriptSummary}`
+        );
+      });
+
+      // ===================================================================
+      // MODULE 2: SUBTRACKER & STUDENT DEALFINDER LOGIC
+      // ===================================================================
+      let subscriptions = [
+        { id: 1, name: 'Spotify Premium', cost: 119, category: 'Entertainment', usage: 'Daily', studentDiscountPct: 50, perkNote: 'Student Plan ₹59/mo' },
+        { id: 2, name: 'Canva Pro', cost: 499, category: 'Creator & Design', usage: 'Weekly', studentDiscountPct: 100, perkNote: 'Free via GitHub Student Pack' },
+        { id: 3, name: 'YouTube Premium', cost: 149, category: 'Entertainment', usage: 'Daily', studentDiscountPct: 40, perkNote: 'Student Tier ₹89/mo' },
+        { id: 4, name: 'AI Pro Workspace', cost: 450, category: 'AI & Productivity', usage: 'Weekly', studentDiscountPct: 20, perkNote: 'Academic discount eligible' },
+        { id: 5, name: 'Campus Gym & Fitness', cost: 480, category: 'Fitness & Health', usage: 'Rarely', studentDiscountPct: 0, perkNote: 'Switch to college sports complex' },
+        { id: 6, name: 'Cloud Storage 200GB', cost: 150, category: 'Cloud & Dev', usage: 'Rarely', studentDiscountPct: 100, perkNote: 'Use college .edu Drive quota' }
+      ];
+
+      const studentDiscountToggle = document.getElementById('student-discount-toggle');
+      const subKpiMonthly = document.getElementById('sub-kpi-monthly');
+      const subKpiOriginal = document.getElementById('sub-kpi-original');
+      const subKpiYearly = document.getElementById('sub-kpi-yearly');
+      const subKpiSaved = document.getElementById('sub-kpi-saved');
+      const subKpiSavedMo = document.getElementById('sub-kpi-saved-mo');
+      const subKpiLeaks = document.getElementById('sub-kpi-leaks');
+      const subKpiLeakCost = document.getElementById('sub-kpi-leak-cost');
+      const subListContainer = document.getElementById('sub-list-container');
+      const addSubForm = document.getElementById('add-sub-form');
+      const analyzeBudgetAiBtn = document.getElementById('analyze-budget-ai-btn');
+
+      function getEffectiveCost(sub, applyStudentDiscounts) {
+        if (!applyStudentDiscounts || !sub.studentDiscountPct) return sub.cost;
+        return Math.round(sub.cost * (1 - sub.studentDiscountPct / 100));
+      }
+
+      function renderSubscriptions() {
+        const applyDiscounts = studentDiscountToggle.checked;
+        let originalMonthly = 0;
+        let netMonthly = 0;
+        let leakCount = 0;
+        let leakMonthlyCost = 0;
+
+        subListContainer.innerHTML = '';
+
+        if (subscriptions.length === 0) {
+          subListContainer.innerHTML = `<p class="text-xs text-slate-400 text-center py-6">No subscriptions tracked yet. Add one above!</p>`;
+        }
+
+        subscriptions.forEach((sub) => {
+          const effective = getEffectiveCost(sub, applyDiscounts);
+          originalMonthly += sub.cost;
+          netMonthly += effective;
+
+          const isLeak = sub.usage === 'Rarely';
+          if (isLeak) {
+            leakCount++;
+            leakMonthlyCost += effective;
+          }
+
+          const usageColors = {
+            Daily: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
+            Weekly: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
+            Rarely: 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+          };
+
+          const row = document.createElement('div');
+          row.className = `p-3.5 rounded-xl bg-[#0B0F19] border ${
+            isLeak ? 'border-amber-500/40' : 'border-slate-800'
+          } flex flex-col sm:flex-row sm:items-center justify-between gap-3`;
+
+          row.innerHTML = `
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-sm font-bold text-white">${sub.name}</span>
+                <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800 text-slate-400">${sub.category}</span>
+                <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full border ${usageColors[sub.usage] || usageColors.Weekly}">
+                  ${isLeak ? '⚠ Rarely Used — Cancel Alert' : sub.usage}
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-400">
+                ${applyDiscounts && sub.studentDiscountPct > 0 ? `<span class="text-emerald-400 font-semibold">Student Perk (${sub.studentDiscountPct}% off):</span> ${sub.perkNote}` : sub.perkNote}
+              </p>
+            </div>
+
+            <div class="flex items-center justify-between sm:justify-end gap-4 shrink-0">
+              <div class="text-right">
+                <p class="text-sm font-extrabold text-white">₹${effective}<span class="text-[11px] font-normal text-slate-400">/mo</span></p>
+                ${
+                  applyDiscounts && effective < sub.cost
+                    ? `<p class="text-[11px] text-slate-500 line-through">₹${sub.cost}/mo</p>`
+                    : ''
+                }
+              </div>
+              <button
+                type="button"
+                data-del-id="${sub.id}"
+                aria-label="Delete ${sub.name}"
+                class="del-sub-btn p-2 rounded-lg bg-slate-800/80 hover:bg-rose-600/20 text-slate-400 hover:text-rose-400 transition-colors cursor-pointer"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </button>
+            </div>
+          `;
+          subListContainer.appendChild(row);
+        });
+
+        // Update KPIs
+        const savedMonthly = Math.max(0, originalMonthly - netMonthly);
+        subKpiMonthly.textContent = `₹${netMonthly.toLocaleString('en-IN')}`;
+        subKpiOriginal.textContent = `₹${originalMonthly.toLocaleString('en-IN')} regular`;
+        subKpiOriginal.style.visibility = savedMonthly > 0 ? 'visible' : 'hidden';
+        subKpiYearly.textContent = `₹${(netMonthly * 12).toLocaleString('en-IN')}`;
+        subKpiSaved.textContent = `₹${(savedMonthly * 12).toLocaleString('en-IN')}/yr`;
+        subKpiSavedMo.textContent = `₹${savedMonthly.toLocaleString('en-IN')} saved / mo`;
+        subKpiLeaks.textContent = `${leakCount} ${leakCount === 1 ? 'Leak' : 'Leaks'}`;
+        subKpiLeakCost.textContent = leakCount > 0 ? `₹${leakMonthlyCost}/mo wasted` : 'Zero wasted plans!';
+
+        // Bind Delete Buttons
+        document.querySelectorAll('.del-sub-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = Number(btn.getAttribute('data-del-id'));
+            subscriptions = subscriptions.filter((s) => s.id !== id);
+            renderSubscriptions();
+            showToast('Subscription removed.');
+          });
+        });
+      }
+
+      studentDiscountToggle.addEventListener('change', renderSubscriptions);
+
+      addSubForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = (document.getElementById('sub-name').value || '').trim();
+        const cost = parseFloat(document.getElementById('sub-cost').value);
+        const category = document.getElementById('sub-category').value;
+        const usage = document.getElementById('sub-usage').value;
+
+        if (!name || isNaN(cost) || cost <= 0) {
+          showToast('Enter a valid service name and monthly INR cost.');
+          return;
+        }
+
+        // Auto-detect common student discount eligibility
+        const lower = name.toLowerCase();
+        let discountPct = 0;
+        let perkNote = 'Standard student tracking';
+        if (lower.includes('spotify') || lower.includes('apple') || lower.includes('amazon') || lower.includes('prime')) {
+          discountPct = 50;
+          perkNote = 'Eligible for 50% Student Membership';
+        } else if (lower.includes('notion') || lower.includes('figma') || lower.includes('github') || lower.includes('canva') || lower.includes('jetbrains')) {
+          discountPct = 100;
+          perkNote = '100% Free with verified .edu email';
+        }
+
+        subscriptions.unshift({
+          id: Date.now(),
+          name,
+          cost: Math.round(cost),
+          category,
+          usage,
+          studentDiscountPct: discountPct,
+          perkNote
+        });
+
+        document.getElementById('sub-name').value = '';
+        document.getElementById('sub-cost').value = '';
+        renderSubscriptions();
+        showToast(`Added ${name} to tracker!`);
+      });
+
+      analyzeBudgetAiBtn.addEventListener('click', () => {
+        const applyDiscounts = studentDiscountToggle.checked;
+        const summary = subscriptions
+          .map((s) => `${s.name}: ₹${getEffectiveCost(s, applyDiscounts)}/mo (${s.usage} usage)`)
+          .join('; ');
+        document.getElementById('copilot-panel').scrollIntoView({ behavior: 'smooth' });
+        handleSendPrompt(
+          `Analyze my student subscription stack and suggest how I can save more money or split plans:\n${summary}`
+        );
+      });
+
+      // ===================================================================
+      // MODULE 3: SMART DECISION MATRIX (OVERTHINKER SOLVER) LOGIC
+      // ===================================================================
+      const decisionCriteria = [
+        { id: 'budget', label: 'Budget Friendliness (Higher = Cheaper)', weight: 8, scoreA: 4, scoreB: 9 },
+        { id: 'roi', label: 'Long-Term ROI & Skill Growth', weight: 9, scoreA: 9, scoreB: 7 },
+        { id: 'time', label: 'Time & Effort Efficiency', weight: 6, scoreA: 8, scoreB: 6 },
+        { id: 'joy', label: 'Enjoyment & Low Stress', weight: 7, scoreA: 8, scoreB: 7 }
+      ];
+
+      const optionAInput = document.getElementById('option-a-name');
+      const optionBInput = document.getElementById('option-b-name');
+      const criteriaContainer = document.getElementById('decision-criteria-container');
+      const winnerTitle = document.getElementById('decision-winner-title');
+      const barLabelA = document.getElementById('bar-label-a');
+      const barScoreA = document.getElementById('bar-score-a');
+      const barFillA = document.getElementById('bar-fill-a');
+      const barLabelB = document.getElementById('bar-label-b');
+      const barScoreB = document.getElementById('bar-score-b');
+      const barFillB = document.getElementById('bar-fill-b');
+      const devilsAdvocateAiBtn = document.getElementById('devils-advocate-ai-btn');
+
+      function computeDecisionScores() {
+        let totalWeight = 0;
+        let weightedA = 0;
+        let weightedB = 0;
+
+        decisionCriteria.forEach((c) => {
+          totalWeight += c.weight;
+          weightedA += c.weight * c.scoreA;
+          weightedB += c.weight * c.scoreB;
+        });
+
+        const maxPossible = Math.max(1, totalWeight * 10);
+        const pctA = Math.round((weightedA / maxPossible) * 100);
+        const pctB = Math.round((weightedB / maxPossible) * 100);
+
+        const nameA = (optionAInput.value || '').trim() || 'Option A';
+        const nameB = (optionBInput.value || '').trim() || 'Option B';
+
+        barLabelA.textContent = `Option A: ${nameA}`;
+        barScoreA.textContent = `${pctA} / 100 pts`;
+        barFillA.style.width = `${pctA}%`;
+
+        barLabelB.textContent = `Option B: ${nameB}`;
+        barScoreB.textContent = `${pctB} / 100 pts`;
+        barFillB.style.width = `${pctB}%`;
+
+        if (pctA > pctB) {
+          winnerTitle.textContent = `Option A Wins (${pctA} vs ${pctB}): ${nameA}`;
+        } else if (pctB > pctA) {
+          winnerTitle.textContent = `Option B Wins (${pctB} vs ${pctA}): ${nameB}`;
+        } else {
+          winnerTitle.textContent = `Exact Tie (${pctA} pts each) — Ask AI to Break the Tie!`;
+        }
+
+        return { nameA, nameB, pctA, pctB };
+      }
+
+      function renderDecisionMatrix() {
+        criteriaContainer.innerHTML = '';
+        decisionCriteria.forEach((crit, idx) => {
+          const card = document.createElement('div');
+          card.className = 'p-4 rounded-xl bg-[#0B0F19] border border-slate-800 space-y-3';
+          card.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="text-xs sm:text-sm font-bold text-white">${crit.label}</span>
+              <div class="flex items-center gap-2">
+                <label class="text-[11px] font-semibold text-amber-300">Priority Weight: <span id="w-val-${idx}">${crit.weight}</span>/10</label>
+                <input type="range" min="1" max="10" value="${crit.weight}" data-idx="${idx}" data-field="weight" class="crit-slider w-24 h-1.5 bg-slate-700 rounded-lg accent-amber-400 cursor-pointer" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-indigo-300 font-semibold">Option A Score</span>
+                  <span id="a-val-${idx}" class="font-bold text-white">${crit.scoreA}/10</span>
+                </div>
+                <input type="range" min="1" max="10" value="${crit.scoreA}" data-idx="${idx}" data-field="scoreA" class="crit-slider w-full h-1.5 bg-slate-800 rounded-lg accent-indigo-500 cursor-pointer" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-cyan-300 font-semibold">Option B Score</span>
+                  <span id="b-val-${idx}" class="font-bold text-white">${crit.scoreB}/10</span>
+                </div>
+                <input type="range" min="1" max="10" value="${crit.scoreB}" data-idx="${idx}" data-field="scoreB" class="crit-slider w-full h-1.5 bg-slate-800 rounded-lg accent-cyan-400 cursor-pointer" />
+              </div>
+            </div>
+          `;
+          criteriaContainer.appendChild(card);
+        });
+
+        document.querySelectorAll('.crit-slider').forEach((slider) => {
+          slider.addEventListener('input', (e) => {
+            const idx = Number(e.target.getAttribute('data-idx'));
+            const field = e.target.getAttribute('data-field');
+            const val = Number(e.target.value);
+            decisionCriteria[idx][field] = val;
+
+            if (field === 'weight') document.getElementById(`w-val-${idx}`).textContent = val;
+            if (field === 'scoreA') document.getElementById(`a-val-${idx}`).textContent = `${val}/10`;
+            if (field === 'scoreB') document.getElementById(`b-val-${idx}`).textContent = `${val}/10`;
+
+            computeDecisionScores();
+          });
+        });
+
+        computeDecisionScores();
+      }
+
+      optionAInput.addEventListener('input', computeDecisionScores);
+      optionBInput.addEventListener('input', computeDecisionScores);
+
+      document.querySelectorAll('.decision-preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const type = btn.getAttribute('data-dpreset');
+          if (type === 'laptop') {
+            optionAInput.value = 'Buy Editing & Coding Laptop (₹65k)';
+            optionBInput.value = 'Upgrade RAM/SSD & Invest Balance';
+            decisionCriteria[0].scoreA = 4; decisionCriteria[0].scoreB = 9;
+            decisionCriteria[1].scoreA = 9; decisionCriteria[1].scoreB = 7;
+          } else if (type === 'course') {
+            optionAInput.value = 'Paid Cohort Bootcamp (₹12,000)';
+            optionBInput.value = 'Free YouTube + Open-Source Build';
+            decisionCriteria[0].scoreA = 4; decisionCriteria[0].scoreB = 10;
+            decisionCriteria[1].scoreA = 8; decisionCriteria[1].scoreB = 8;
+          } else if (type === 'fest') {
+            optionAInput.value = 'Join College Fest Core Committee';
+            optionBInput.value = 'Focus on National Hackathon Team';
+            decisionCriteria[0].scoreA = 8; decisionCriteria[0].scoreB = 8;
+            decisionCriteria[1].scoreA = 7; decisionCriteria[1].scoreB = 10;
+          }
+          renderDecisionMatrix();
+          showToast('Loaded student decision preset!');
+        });
+      });
+
+      devilsAdvocateAiBtn.addEventListener('click', () => {
+        const { nameA, nameB, pctA, pctB } = computeDecisionScores();
+        const breakdown = decisionCriteria
+          .map((c) => `${c.label} (Weight ${c.weight}): A=${c.scoreA}, B=${c.scoreB}`)
+          .join('; ');
+        document.getElementById('copilot-panel').scrollIntoView({ behavior: 'smooth' });
+        handleSendPrompt(
+          `Play devil's advocate on my decision matrix between Option A ("${nameA}", Score ${pctA}/100) and Option B ("${nameB}", Score ${pctB}/100). Point out blind spots and tell me which one I should actually pick:\n${breakdown}`
+        );
+      });
+
+      // ===================================================================
+      // PERSISTENT LIVE GEMINI API CHATBOT (HYPESMART COPILOT)
+      // ===================================================================
+      const runtimeApiKey = ''; // Automatically injected in preview environment
+      const GEMINI_MODEL = 'gemini-3-flash-preview';
+      let conversationHistory = [];
+
+      const chatForm = document.getElementById('chat-form');
+      const chatInput = document.getElementById('chat-input');
+      const chatMessages = document.getElementById('chat-messages');
+      const chatSubmitBtn = document.getElementById('chat-submit-btn');
+      const chatErrorBanner = document.getElementById('chat-error-banner');
+      const chatErrorText = document.getElementById('chat-error-text');
+      const dismissErrorBtn = document.getElementById('dismiss-error-btn');
+      const clearChatBtn = document.getElementById('clear-chat-btn');
+
+      // API Key Drawer Controls
+      const toggleKeyDrawerBtn = document.getElementById('toggle-key-drawer-btn');
+      const apiKeyDrawer = document.getElementById('api-key-drawer');
+      const userApiKeyInput = document.getElementById('user-api-key-input');
+      const saveApiKeyBtn = document.getElementById('save-api-key-btn');
+      const clearApiKeyBtn = document.getElementById('clear-api-key-btn');
+      const keyStatusPill = document.getElementById('key-status-pill');
+
+      function getEffectiveApiKey() {
+        const stored = localStorage.getItem('hypesmart_gemini_key') || '';
+        return stored.trim() || runtimeApiKey;
+      }
+
+      function refreshKeyStatus() {
+        const stored = localStorage.getItem('hypesmart_gemini_key');
+        if (stored) {
+          keyStatusPill.textContent = 'Custom Key Active';
+          keyStatusPill.className = 'text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300';
+          userApiKeyInput.value = stored;
+        } else {
+          keyStatusPill.textContent = 'Runtime / Env Mode';
+          keyStatusPill.className = 'text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-400';
+          userApiKeyInput.value = '';
+        }
+      }
+
+      toggleKeyDrawerBtn.addEventListener('click', () => {
+        apiKeyDrawer.classList.toggle('hidden');
+      });
+
+      saveApiKeyBtn.addEventListener('click', () => {
+        const val = userApiKeyInput.value.trim();
+        if (!val) {
+          showToast('Paste a valid Gemini API key first.');
+          return;
+        }
+        localStorage.setItem('hypesmart_gemini_key', val);
+        refreshKeyStatus();
+        apiKeyDrawer.classList.add('hidden');
+        showToast('API key saved locally in browser!');
+      });
+
+      clearApiKeyBtn.addEventListener('click', () => {
+        localStorage.removeItem('hypesmart_gemini_key');
+        refreshKeyStatus();
+        showToast('Cleared stored API key.');
+      });
+
+      function showChatError(msg) {
+        chatErrorText.textContent = msg;
+        chatErrorBanner.classList.remove('hidden');
+      }
+
+      function hideChatError() {
+        chatErrorBanner.classList.add('hidden');
+      }
+
+      dismissErrorBtn.addEventListener('click', hideChatError);
+
+      function formatSafeMarkdown(rawText) {
+        const escaped = rawText
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+
+        return escaped
+          .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
+          .replace(/\n- /g, '<br>• ')
+          .replace(/\n\d+\. /g, (m) => `<br><strong class="text-cyan-300">${m.trim()}</strong> `)
+          .replace(/\n/g, '<br>');
+      }
+
+      function appendChatBubble(role, text) {
+        const row = document.createElement('div');
+        row.className = role === 'user' ? 'flex items-start justify-end gap-2.5' : 'flex items-start gap-2.5';
+
+        if (role === 'user') {
+          row.innerHTML = `
+            <div class="bg-indigo-600 text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-xs sm:text-sm leading-relaxed max-w-[85%] shadow-md">
+              ${formatSafeMarkdown(text)}
+            </div>
+          `;
+        } else {
+          row.innerHTML = `
+            <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-600 to-cyan-500 text-white flex items-center justify-center text-xs font-extrabold shrink-0 mt-0.5">
+              AI
+            </div>
+            <div class="bg-[#1A2338] border border-slate-700/70 text-slate-200 rounded-2xl rounded-tl-sm px-4 py-3 text-xs sm:text-sm leading-relaxed max-w-[88%]">
+              ${formatSafeMarkdown(text)}
+            </div>
+          `;
+        }
+
+        chatMessages.appendChild(row);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function showTypingBubble() {
+        const el = document.createElement('div');
+        el.id = 'copilot-typing';
+        el.className = 'flex items-start gap-2.5';
+        el.innerHTML = `
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-600 to-cyan-500 text-white flex items-center justify-center text-xs font-extrabold shrink-0 mt-0.5">
+            AI
+          </div>
+          <div class="bg-[#1A2338] border border-slate-700/70 text-slate-300 rounded-2xl rounded-tl-sm px-4 py-3 text-xs flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-bounce"></span>
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style="animation-delay:0.15s"></span>
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style="animation-delay:0.3s"></span>
+            <span>HypeSmart Copilot is thinking...</span>
+          </div>
+        `;
+        chatMessages.appendChild(el);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function hideTypingBubble() {
+        const el = document.getElementById('copilot-typing');
+        if (el) el.remove();
+      }
+
+      function buildActiveContextString() {
+        if (activeModule === 'hooks') {
+          return `Active Tab: Viral Hook & Script Lab. Current Topic="${hookTopicInput.value}", Niche="${hookNicheSelect.value}", Platform="${hookPlatformSelect.value}", Tone="${hookToneSelect.value}".`;
+        }
+        if (activeModule === 'subs') {
+          const applyDiscounts = studentDiscountToggle.checked;
+          const totalMo = subscriptions.reduce((acc, s) => acc + getEffectiveCost(s, applyDiscounts), 0);
+          return `Active Tab: SubTracker & DealFinder. Student ID Optimizer=${applyDiscounts ? 'ON' : 'OFF'}, Net Monthly Spend=₹${totalMo}, Tracked Apps=${subscriptions.map((s) => `${s.name}(₹${getEffectiveCost(s, applyDiscounts)}, ${s.usage})`).join(', ')}.`;
+        }
+        const { nameA, nameB, pctA, pctB } = computeDecisionScores();
+        return `Active Tab: Smart Decision Matrix. Option A="${nameA}" (${pctA}/100 pts) vs Option B="${nameB}" (${pctB}/100 pts).`;
+      }
+
+      async function callGeminiApiWithBackoff(payload, maxRetries = 3) {
+        const key = getEffectiveApiKey();
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${key}`;
+        let delay = 1000;
+
+        for (let attempt = 0; attempt <= maxRetries; attempt++) {
+          try {
+            const res = await fetch(url, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) {
+              if ((res.status === 429 || res.status >= 500) && attempt < maxRetries) {
+                await new Promise((r) => setTimeout(r, delay));
+                delay *= 2;
+                continue;
+              }
+              throw new Error(`HTTP ${res.status}`);
+            }
+
+            const json = await res.json();
+            const text = json?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (!text) throw new Error('Empty response');
+            return text;
+          } catch (err) {
+            if (attempt === maxRetries) throw err;
+            await new Promise((r) => setTimeout(r, delay));
+            delay *= 2;
+          }
+        }
+      }
+
+      async function handleSendPrompt(rawText) {
+        hideChatError();
+        const trimmed = (rawText || '').trim();
+
+        if (!trimmed) {
+          showChatError('Please type a question or select a quick chip before sending.');
+          return;
+        }
+        if (trimmed.length < 3) {
+          showChatError('Please enter at least 3 characters.');
+          return;
+        }
+
+        appendChatBubble('user', trimmed);
+        chatInput.value = '';
+        chatInput.disabled = true;
+        chatSubmitBtn.disabled = true;
+        showTypingBubble();
+
+        const systemInstruction = [
+          'You are HypeSmart Copilot, an upbeat, sharp AI mentor built for college students and Gen-Z creators.',
+          'You specialize strictly in three areas: (1) Short-form content hooks, scripts, and creator growth; (2) Student subscription budgeting, discounts, and pocket-money optimization; and (3) Structured decision-making & devil’s-advocate advice.',
+          'Keep responses punchy (under 140 words), structured with short bullet points, and use Indian Rupees (₹) for currency.',
+          buildActiveContextString()
+        ].join(' ');
+
+        conversationHistory.push({ role: 'user', parts: [{ text: trimmed }] });
+        if (conversationHistory.length > 8) {
+          conversationHistory = conversationHistory.slice(-8);
+        }
+
+        try {
+          const reply = await callGeminiApiWithBackoff({
+            contents: conversationHistory,
+            systemInstruction: { parts: [{ text: systemInstruction }] }
+          });
+          hideTypingBubble();
+          appendChatBubble('model', reply);
+          conversationHistory.push({ role: 'model', parts: [{ text: reply }] });
+        } catch (err) {
+          hideTypingBubble();
+          conversationHistory.pop();
+          showChatError('Could not connect to Gemini API. Click the Key icon above to add your API key or verify your network.');
+        } finally {
+          chatInput.disabled = false;
+          chatSubmitBtn.disabled = false;
+          chatInput.focus();
+        }
+      }
+
+      chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleSendPrompt(chatInput.value);
+      });
+
+      clearChatBtn.addEventListener('click', () => {
+        conversationHistory = [];
+        hideChatError();
+        chatMessages.innerHTML = `
+          <div class="flex items-start gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-600 to-cyan-500 text-white flex items-center justify-center text-xs font-extrabold shrink-0 mt-0.5">
+              AI
+            </div>
+            <div class="bg-[#1A2338] border border-slate-700/70 text-slate-200 rounded-2xl rounded-tl-sm px-4 py-3 text-xs sm:text-sm leading-relaxed">
+              <p class="font-bold text-white mb-1">Conversation cleared!</p>
+              <p>Switch between any of the 3 modules or ask me a question below.</p>
+            </div>
+          </div>
+        `;
+      });
+
+      // ===================================================================
+      // PROMPT & VIVA DOCUMENTATION MODAL CONTROLS
+      // ===================================================================
+      const docsModal = document.getElementById('docs-modal');
+      const openDocsBtn = document.getElementById('open-docs-btn');
+      const closeDocsBtn = document.getElementById('close-docs-btn');
+
+      openDocsBtn.addEventListener('click', () => docsModal.classList.remove('hidden'));
+      closeDocsBtn.addEventListener('click', () => docsModal.classList.add('hidden'));
+      docsModal.addEventListener('click', (e) => {
+        if (e.target === docsModal) docsModal.classList.add('hidden');
+      });
+
+      document.querySelectorAll('.doc-tab-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const tabId = btn.getAttribute('data-doctab');
+          document.querySelectorAll('.doc-tab-btn').forEach((b) => {
+            b.classList.remove('border-indigo-500', 'text-indigo-300', 'font-bold');
+            b.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+          });
+          btn.classList.add('border-indigo-500', 'text-indigo-300', 'font-bold');
+          btn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+
+          document.querySelectorAll('.doc-panel').forEach((p) => p.classList.add('hidden'));
+          const activePanel = document.getElementById(`docpanel-${tabId}`);
+          if (activePanel) activePanel.classList.remove('hidden');
+        });
+      });
+
+      // ===================================================================
+      // INITIALIZE APP ON LOAD
+      // ===================================================================
+      refreshKeyStatus();
+      renderCopilotChips();
+      buildHooksAndScript();
+      renderSubscriptions();
+      renderDecisionMatrix();
+    })();
+  </script>
+</body>
+</html>
